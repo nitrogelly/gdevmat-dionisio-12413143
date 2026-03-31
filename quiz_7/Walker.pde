@@ -8,7 +8,10 @@ class Walker
   
   Walker()
   {
-    position = new PVector(random(width), random(height));
+    position = new PVector(
+      random(Window.left, Window.right),
+      random(Window.bottom, Window.top)
+    );
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
 
@@ -26,13 +29,15 @@ class Walker
     //  control strength
     dir.mult(0.2);
 
-    //  apply as acceleration
-    acceleration = dir;
+    //  assign acceleration from direction
+    acceleration.add(dir);
 
     //  apply physics chain
     velocity.add(acceleration);
     velocity.limit(5);
     position.add(velocity);
+    
+    acceleration.mult(0); //  reset acceleration
   }
   void render()
   {

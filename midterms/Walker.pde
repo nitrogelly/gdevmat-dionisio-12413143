@@ -7,8 +7,8 @@ class Walker
   Walker()
   {
     // gaussian spawn (clustered around center)
-    float x = randomGaussian() * 100 + width/2;
-    float y = randomGaussian() * 100 + height/2;
+    float x = randomGaussian() * 100;
+    float y = randomGaussian() * 100;
 
     position = new PVector(x, y);
 

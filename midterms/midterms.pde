@@ -4,10 +4,14 @@ int counter = 0;            //  reset timer
 
 void setup()
 {
-  size(800, 600);
+  size(1280, 720, P3D);
+  camera(0, 0, Window.eyeZ, 0, 0, 0, 0, -1, 0);
 
   //  initialize black hole (will be overridden by mouse)
-  blackHole = new PVector(random(width), random(height));
+  blackHole = new PVector(
+    random(Window.left, Window.right),
+    random(Window.bottom, Window.top)
+  );
 
   //  create all walkers
   for (int i = 0; i < walkers.length; i++)
@@ -21,7 +25,10 @@ void draw()
   background(30);
 
   //  update black hole to follow mouse
-  blackHole.set(mouseX, mouseY);
+  float mx = mouseX - width/2;
+  float my = height/2 - mouseY;
+  
+  blackHole.set(mx, my);
 
   //  draw black hole
   fill(255);
